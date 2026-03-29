@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://ngkuid468wy0"]
+
+[ext_resource type="Script" uid="uid://bunk1aa5nsp67" path="res://src/hud.gd" id="1_qpvh6"]
+
+[node name="HUD" type="CanvasLayer" unique_id=963890997]
+script = ExtResource("1_qpvh6")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1158601273]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 58.0
+offset_right = 199.0
+offset_bottom = 146.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="." unique_id=239445657]
+offset_right = 401.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 40
+text = "Dodge the Balls!"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="." unique_id=241087247]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.5
+offset_top = -100.0
+offset_right = 105.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Press to Start!"
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=635646685]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

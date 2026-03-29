@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://b40ph1vg7tjvn"]
+
+[ext_resource type="Script" uid="uid://b0xpme8cvl28t" path="res://src/main.gd" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://be3d4gj4gkqd3" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://bbdvbttx5d1jj" path="res://scenes/enemy.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://ngkuid468wy0" path="res://scenes/HUD.tscn" id="4_jyhfs"]
+
+[sub_resource type="Curve2D" id="Curve2D_o5qli"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 404, 4, 0, 0, 0, 0, 402, 650, 0, 0, 0, 0, -2, 651, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2)
+}
+point_count = 6
+
+[node name="main" type="Node2D" unique_id=868290078]
+script = ExtResource("1_0wfyh")
+mob_scene = ExtResource("2_sugp2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=285694076]
+custom_minimum_size = Vector2(400, 650)
+offset_right = 400.0
+offset_bottom = 600.0
+color = Color(0.8235294, 0.7058824, 0.54901963, 1)
+
+[node name="Player" parent="." unique_id=625698263 instance=ExtResource("1_o5qli")]
+position = Vector2(200, 324)
+scale = Vector2(2.07, 2.07)
+
+[node name="MobTimer" type="Timer" parent="." unique_id=1139208369]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=910112587]
+
+[node name="StartTimer" type="Timer" parent="." unique_id=1078526246]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="." unique_id=1542735100]
+position = Vector2(200, 324)
+
+[node name="MobPath" type="Path2D" parent="." unique_id=1011434958]
+curve = SubResource("Curve2D_o5qli")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" unique_id=701210880]
+position = Vector2(0, 2)
+rotation = 0.0049504545
+
+[node name="HUD" parent="." unique_id=963890997 instance=ExtResource("4_jyhfs")]
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

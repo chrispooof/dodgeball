@@ -1,0 +1,49 @@
+[gd_scene format=4 uid="uid://bbdvbttx5d1jj"]
+
+[ext_resource type="Script" uid="uid://cppo8mbbgqm15" path="res://src/enemy.gd" id="1_7p1mj"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_8tegq"]
+_data = PackedByteArray("AAADAAUAAAABAAAACgAAAAoAAABUAAAAUklGRkwAAABXRUJQVlA4TD8AAAAvCUACEB8gJCA0H/z/6YaQgND8P+IiIQGhuuH/R/MfgL+qAjMNkDBeQluF21LW8JLPDBH9Dzc2vOgr3WhDNwAA")
+size_override = Vector2(10, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8tegq"]
+radius = 5.0
+
+[node name="Enemy" type="RigidBody2D" unique_id=1821414391 groups=["mobs"]]
+collision_mask = 0
+script = ExtResource("1_7p1mj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=843831606]
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = SubResource("PortableCompressedTexture2D_8tegq")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://assets/dodgeball.aseprite",
+"source_uid": 6800496149113284327
+}
+metadata/_aseprite_wizard_source_file_hash_ = "55149eb28fa0d5d0281aabe648864630"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=625138673]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_8tegq")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1677078267]
+scale = Vector2(5, 5)
+rect = Rect2(-5, -5, 10, 10)
